@@ -45,7 +45,7 @@ Please improve and use this code. :- )
 
 ## Known bugs:
 
--  "if wordOnly in wordlist" matches substrings (filed by IsthmusCrypto 2018.05)
+-  "if wordOnly in wordlist" matches substrings
 
 ## Wishlist:
 
@@ -53,7 +53,7 @@ Please improve and use this code. :- )
 
    -  Could be done by looping over multiple dictionaries (cleaner)
 
-   -  Could be done by making de-deuped union of multiple dectionaries (lighter)
+   -  Could be done by making de-duped union of multiple dictionaries (lighter)
 
 -   Sliding seedSieve wrapper: Scan a window of fixed word-size (e.g. N_w = 36 words) across large inputs, and apply seed-sieve redaction to each snip. Imagine a user that pastes a 24-word seed into the middle of the 272 words of the Gettysburg Address. Current implementation would not trigger seed sieve; however, the sliding seed sieve would trigger when the window hits the phrase with 24+ of (N_w = ) 36 words returning dictionary matches.
 
