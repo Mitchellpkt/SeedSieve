@@ -1,21 +1,41 @@
 # SeedSieve
 This seedSieve function is a tool for redacting cryptocurrency seed mnemonic phrases from text fields or databases to protect users from theft.
 
+## Motivation
 Allowing users to accidentally or intentionally/foolishly send or store seed mnemonic phrases in your data sets or streams opens them up to high risk of theft from malicious parties. In almost all cases and services, this increases liabilities and offers no benefits.
 
-Here is an easy method for removing such data, implemented with the BIP39 library, pending inclusion of others. It scans the text to identify strings with high density of seed words, and redacts them.
+## Example
 
+The `seedSieve` is an easy method for removing such data, implemented with the BIP39 library, pending inclusion of others. It scans the text to identify strings with high density of seed words, and redacts them.
+
+```Python
+>>> from seedSieve import *
+>>> [outputString,qTriggered] = seedSieve("Very simple example", 1, 0.1, "word example simple test", "[#XYZ]");
+>>> print(outputString)
+   "Very [#XYZ] [#XYZ]"
+``` 
+## `seedSieve` parameters
+
+* **rawStr** : *string* - The string to be tested and/or redacted.
+
+* **minimumSeedHits** : *int* - How many seed words must be observed to trigger redaction
+
+* **seedRatio** : *float* - Minimum ratio (0,1) of seed:all words to trigger redaction
+
+* **replaceWith** : *string* - Short string to replace the redacted words
+   
+## Implementation notes
 Any service that transmits user data and is NOT suitable for sending sensitive financial information (e.g. user logs, message boards, chat services) should implement the seed sieve on the device, before transmitting the field.
 
 Any entity passing along user data to {marketing, analysis, etc, or any third party} should apply the seed sieve first to reduce risk & liability. If this data set is to be used for learning, this should actually increase accuracy by removing the red-herrings (e.g. "apple" being about fruits) and properly labeling the text as cryptocurrency-related.
 
 Please improve and use this code. :- )
 
-2018-05 known bugs:
+## Known bugs:
 
--  "if wordOnly in wordlist" matches substrings
+-  "if wordOnly in wordlist" matches substrings (filed by IsthmusCrypto 2018.05)
 
-Wishlist:
+## Wishlist:
 
 -  Support for other dictionary files besides BIP39 English (other languages & cryptocurrencies)
 
