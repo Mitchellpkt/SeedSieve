@@ -1,8 +1,6 @@
 # SeedSieve
 This seedSieve function is a tool for redacting cryptocurrency seed mnemonic phrases from text fields or databases to protect users from theft.
 
-This seedSieve function is a tool for stripping cryptocurrency seed mnemonic phrases from text fields or databases to protect users from theft.
-
 Allowing users to accidentally or intentionally/foolishly send or store seed mnemonic phrases in your data sets or streams opens them up to high risk of theft from malicious parties. In almost all cases and services, this increases liabilities and offers no benefits.
 
 Here is an easy method for removing such data, implemented with the BIP39 library, pending inclusion of others. It scans the text to identify strings with high density of seed words, and redacts them.
