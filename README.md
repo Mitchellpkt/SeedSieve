@@ -4,26 +4,38 @@ This seedSieve function is a tool for redacting cryptocurrency seed mnemonic phr
 ## Motivation
 Allowing users to accidentally or intentionally/foolishly send or store seed mnemonic phrases in your data sets or streams opens them up to high risk of theft from malicious parties. In almost all cases and services, this increases liabilities and offers no benefits.
 
-## Example
+The `seedSieve` is an easy method for removing such data, implemented with the BIP39 library, pending inclusion of others. It scans the text to identify strings with high density of seed words, and redacts them. 
 
-The `seedSieve` is an easy method for removing such data, implemented with the BIP39 library, pending inclusion of others. It scans the text to identify strings with high density of seed words, and redacts them.
+## Inputs
+
+`seedSieve` requires 1 input string (to be tested), followed by 4 general parameters that specify the wordlist and adjust sensitivity: 
+
+* **rawStr** : *string* - The input string to be tested and/or redacted.
+
+* **minimumSeedHits** : *int (default=7)* - How many seed words must be observed to trigger redaction
+
+* **seedRatio** : *float (default=0.3)* - Minimum ratio (0,1) of seed:all words to trigger redaction
+
+* **wordlist** : *string/list* - List of words used in cryptocurrency seeds
+
+* **replaceWith** : *string (default="[#BIP39]")* - Short string to replace the redacted words
 
 ```Python
 >>> from seedSieve import *
->>> [outputString,qTriggered] = seedSieve("Very simple example", 1, 0.1, "word example simple test", "[#XYZ]");
->>> print(outputString)
-   "Very [#XYZ] [#XYZ]"
+>>> [outputString,qTriggered] = seedSieve("very simple example", 1, 0.5, "word example simple test", "[#XYZ]");
+>>> print(outputString);
+   "very [#XYZ] [#XYZ]"
+>>> print(qTriggered);
+   1
 ``` 
-## `seedSieve` parameters
+## Outputs
 
-* **rawStr** : *string* - The string to be tested and/or redacted.
+`seedSieve` returns two outputs:
 
-* **minimumSeedHits** : *int* - How many seed words must be observed to trigger redaction
+* **outputString** : *string* - The redacted version of the output string (`= rawStr input`, if non-seed)
 
-* **seedRatio** : *float* - Minimum ratio (0,1) of seed:all words to trigger redaction
+* **qTriggered** : *boolean* - Whether or not the `rawStr` input triggered redaction.
 
-* **replaceWith** : *string* - Short string to replace the redacted words
-   
 ## Implementation notes
 Any service that transmits user data and is NOT suitable for sending sensitive financial information (e.g. user logs, message boards, chat services) should implement the seed sieve on the device, before transmitting the field.
 
