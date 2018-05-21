@@ -36,6 +36,12 @@ The `seedSieve` is an easy method for removing such data, implemented with the B
 
 * **qTriggered** : *boolean* - Whether or not the `rawStr` input triggered redaction.
 
+
+## Example
+The following example strings are sieved with the parameters: (minimumSeedHits > 6) & (seedRatio > 0.3). Note that both thresholds must be exceeded to activate redaction
+
+![ExampleTable](./SeedSieveDemoTable.png)
+
 ## Implementation notes
 Any service that transmits user data and is NOT suitable for sending sensitive financial information (e.g. user logs, message boards, chat services) should implement the seed sieve on the device, before transmitting the field.
 
