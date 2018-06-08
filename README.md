@@ -21,7 +21,6 @@ The `seedSieve` is an easy method for removing such data, implemented with the B
 * **replaceWith** : *string (default="[#BIP39]")* - Short string to replace the redacted words
 
 ```Python
->>> from seedSieve import *
 >>> [outputString,qTriggered] = seedSieve("very simple example", 1, 0.5, "word example simple test", "[#XYZ]");
 >>> print(outputString);
    "very [#XYZ] [#XYZ]"
